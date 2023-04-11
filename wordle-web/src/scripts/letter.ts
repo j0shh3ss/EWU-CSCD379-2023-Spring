@@ -1,6 +1,7 @@
 //letter.ts                                                                    // Class that represents a letter in the wordle word and status
 // of the letter in the wordle word
 // comments for
+//New comment
 export enum LetterStatus {
     NotGuessed = 0,
     Correct,

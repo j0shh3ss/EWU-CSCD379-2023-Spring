@@ -1,7 +1,6 @@
 name: Azure Static Web Apps CI/CD
 
 on:
-  workflow_dispatch:
   push:
     branches:
       - Assignment-1
@@ -25,7 +24,7 @@ jobs:
         with:
           node-version: 18
       - run: npm ci
-        working-directory: ./worlde-web
+        working-directory: ./wordle-web
         name: npm ci
       - run: npm run test:unit
         working-directory: ./wordle-web

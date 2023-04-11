@@ -1,5 +1,8 @@
 # wordle-web
 
+# My website address:
+https://calm-smoke-036e9311e.3.azurestaticapps.net
+
 This template should help get you started developing with Vue 3 in Vite.
 
 ## Recommended IDE Setup

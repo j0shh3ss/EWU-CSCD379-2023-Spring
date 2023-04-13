@@ -4,7 +4,11 @@
    <v-btn @click="checkGuess">Check</v-btn>
    <div>
       <v-row v-for="word in guesses">
-         <v-col v-for="letter in word" :key="letter.letter"></v-col>
+         <v-col v-for="letter in word" :key="letter.letter">
+            <v-card :color="letter.color">
+               <v-card-title>{{ letter.letter }}</v-card-title>
+            </v-card>
+         </v-col>
       </v-row>
    </div>
    <h2>{{ guess }} </h2>

@@ -1,15 +1,16 @@
 <template>
-  <div class="about">
-    <v-card class="mx-auto" max-width="400">
-      <v-card-title>Word Scramble game</v-card-title>
-      <v-card-text>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce tincidunt odio eget tellus euismod efficitur.</p>
-      </v-card-text>
-      <v-card-actions>
-        <v-btn @click="$router.push('/')">Go back to Home</v-btn>
-      </v-card-actions>
+  <v-sheet color="#BBDEFB" height="250px" class="pt-10">
+    <v-card color="indigo" class="ma-15" elevation="5" rounded="x1">
+      <v-card-title>Hello world</v-card-title>
     </v-card>
-  </div>
+  </v-sheet>
+    <v-row no-gutters>
+      <v-col v-for="i in 10" :key="i" cols="12" sm ="6" md ="4" lg="3">
+        <v-card class="ma-1">
+        <v-card-title> {{ i }} </v-card-title>
+        </v-card>
+      </v-col>
+    </v-row>
 </template>
 
 <style>

@@ -1,76 +1,30 @@
 <template>
    <h1>Wordle Mind Bender</h1>
-   <v-text-field v-model="guess" label ="Guess" variants="solo"></v-text-field>
+   <v-text-field v-model="guess" label="Guess" variant="solo"></v-text-field>
    <v-btn @click="checkGuess">Check</v-btn>
    <div>
-      <v-row v-for="word in guesses" :key="word.text">
-         <v-col v-for="letter in word.letters" :key="letter.letter">
+      <v-row v-for="word in game.guesses" :key="word.text">
+         <v-col v-for="letter in word.letters" :key="letter.char">
             <v-btn :color="letter.color">
-               {{ letter.letter }}
+               {{ letter.char }}
             </v-btn>
          </v-col>
       </v-row>
    </div>
    <h2>{{ guess }} </h2>
-   <h3>{{ secretWord }}</h3>
+   <h3>{{ game.secretWord }}</h3>
   </template>
   
 <script setup lang="ts">
-
-import { Letter, LetterStatus } from '@/scripts/letter'
-import { Word } from '@/scripts/word'
+import { WordleGame } from '@/scripts/wordleGame'
 import { ref, reactive } from 'vue'
 
-
 const guess = ref('')
-const wordList = ["apple","peach","crypt","zesty","jelly","piano","tacos","jazzy","fuzzy","sugar","sauce","pizza"]
-const secretWord = wordList[Math.floor(Math.random() * wordList.length)]
-const guesses = reactive(new Array<Word>())
-console.log(secretWord)
+const game = reactive(new WordleGame())
+console.log(game.secretWord)
 
 function checkGuess() {
-   console.log(guess.value)
-   //check length
-   if(guess.value.length !== secretWord.length){
-      console.log("Incorrect length")
-      guess.value = ''
-      return
-   }
-   const results = new Word()
-   let isCorrect = true
-   const guessChars = guess.value.split('')
-   const secretChars = secretWord.split('')
-   for(let i = 0; i < 5; i++){
-   results.push(new Letter(guess.value[i]))
-   if(guess.value[i] === secretWord[i]){
-      results.letters[i].status = LetterStatus.Correct
-      guessChars[i] = '_'
-      secretChars[i] = '_'
-      console.log(`Letter ${i} is correct`)
-   } else {
-      isCorrect = false
-      results.letters[i].status = LetterStatus.Wrong
-      console.log(`Letter ${i} is wrong`)
-   }
-   }
-   for(let i = 0; i < 5; i++){
-      if(guessChars[i] === '_'){
-         for(let j = 0; j < 5; j++){
-            if(secretChars[j] === guessChars[i])
-               results.letters[i].status = LetterStatus.Misplaced
-               guessChars[i] = '_'
-               secretChars[j] = '_'
-               console.log(`Letter ${i} is misplaced`)
-               break
-         }
-      }
-   }
-   console.log(guessChars)
-   console.log(secretChars)
-   console.log(results)
-   console.log(isCorrect)
-   guesses.push(results)
-   console.log(guesses)
+   game.submitGuess(guess.value)
 }
 
 </script>

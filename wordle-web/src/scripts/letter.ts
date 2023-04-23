@@ -9,8 +9,9 @@ export class Letter {
   char: string
   status: LetterStatus = LetterStatus.NotGuessed
 
-  constructor(char: string) {
+  constructor(char: string, status?: LetterStatus) {
     this.char = char
+    this.status = status ?? LetterStatus.NotGuessed
   }
 
   get color() {

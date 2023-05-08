@@ -6,7 +6,7 @@ export enum LetterStatus {
     Misplaced,
     Wrong
 }
-
+//
 
 export class Letter {
     letter: string;

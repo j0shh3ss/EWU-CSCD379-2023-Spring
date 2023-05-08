@@ -7,7 +7,7 @@ export enum LetterStatus {
     Wrong
 }
 
-//////
+
 export class Letter {
     letter: string;
     status: LetterStatus = LetterStatus.NotGuessed;
